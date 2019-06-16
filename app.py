@@ -95,6 +95,12 @@ def register():
         return render_template('succesregister.html')
     return render_template('register.html', form=form)
 
+@profile.route('/<username>', methods=['GET', 'POST'])
+@login_required
+def user(username):
+    otheruser = User.User.query.filter_by(username=username).first_or_404()
+    return render_template('account.html', user=otheruser)
+
 
 if __name__ == '__main__':
     app.run()
