@@ -9,6 +9,8 @@ class User(UserMixin, db.Model):
     firstname = db.Column(db.String(50))
     lastname = db.Column(db.String(80))
     ugroup = db.Column(db.String(10))
+#   uphone = db.Column(db.String(12))
+#   umail = db.Column(db.String(255))
 
 
 class Statistic(db.Model):
