@@ -1,0 +1,46 @@
+{% import "bootstrap/wtf.html" as wtf %}
+<!DOCTYPE html>
+<html lang="en">
+{% include "HeadBlock.html" %}
+
+<body>
+     <form action="/testsavebp" method="POST" >
+     <div>
+    <table class="table table-hover">
+    <thead class="thead-dark">
+         <div class="alert alert-dismissible alert-light">
+     <h4 class="alert-heading">Создание теста: </h4>
+  <p class="mb-0"> Пользователь: {{current_user.username }} </p>
+   <input type="hidden" id="hidden" name="testname" value="{{ info[0] }}">
+
+    </div>
+
+                    <tr>
+                        <th>Вопрос</th>
+                        <th>Вариант ответа №1</th>
+                        <th>Вариант ответа №2</th>
+                        <th>Вариант ответа №3</th>
+                        <th>Вариант ответа №4</th>
+                        <th>Правильный ответ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for index in range(0,info[1]|int) %}
+                    <tr>
+
+                        <td><input type="text" class="form-control " name="q{{ index }}" placeholder="Вопрос № {{ index + 1 }} " ></td>
+                        <td><input type="text" class="form-control " name="a1:{{ index }}" placeholder="Вариант №1 " ></td>
+                        <td><input type="text" class="form-control " name="a2:{{ index }}" placeholder="Вариант №2 " ></td>
+                        <td><input type="text" class="form-control " name="a3:{{ index }}" placeholder="Вариант №3 " ></td>
+                        <td><input type="text" class="form-control " name="a4:{{ index }}" placeholder="Вариант №4 " ></td>
+                        <td><input type="text" class="form-control " name="at:{{ index }}" placeholder="Правильный ответ " ></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+    <button type="submit" class="btn btn-info btn-md mb-md-3">Добавить</button>
+     </div>
+    </form>
+
+</body>
+</html>

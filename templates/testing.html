@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "HeadBlock.html" %}
+<body>
+{% include "NavBlock.html" %}
+ <div class="alert alert-dismissible alert-light">
+
+<h4 class="alert-heading">Вопрос № {{ que.get_question_number(index) }}</h4>
+      </div>
+ <div class="glcontent">
+<p class="mb-2">{{ que.get_question_name(index) }} </p>
+
+
+ <form method="POST" action="/testing">
+
+  <div class="form-group  ">
+
+     {% for i in que.get_question_list(index)  %}
+
+      <div class="custom-control custom-radio">
+      <input type="radio" id="customRadio{{ que.get_question_list(index).index(i) + 1 }}" name="answer" value="{{ que.get_question_list(index).index(i) + 1 }}" class="custom-control-input"  >
+      <label class="custom-control-label" for="customRadio{{ que.get_question_list(index).index(i) + 1 }}">{{ i}}</label>
+     </div>
+{% endfor %}
+  <p></p>
+
+  {% if index == question|length - 1 %}
+      <button type="submit" class="btn btn-success"  formmethod="post">Завершить</button>
+  {% else %}
+    <button type="submit" class="btn btn-success"  formmethod="post">Ответить</button>
+  {% endif %}
+
+ </div>
+
+  </form>
+  </div>
+</body>
+</html>

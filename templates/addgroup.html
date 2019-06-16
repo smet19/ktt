@@ -1,0 +1,23 @@
+{% import "bootstrap/wtf.html" as wtf %}
+<html lang="en">
+{% include "HeadBlock.html" %}
+<body>
+{% include "NavBlock.html" %}
+{% block content %}
+    <form method="POST" action="/creategroup">
+
+        <div class="glcontent">
+          <div class="form-group">
+              <h4 class="alert-heading">{{ info }} </h4>
+            <label>Название группы:</label>
+            <input type="text" class="form-control form-control-md" name="groupname">
+              <p></p>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Новая группа</button>
+          </div>
+        </div>
+
+    </form>
+
+{% endblock %}
+</body>
+</html>

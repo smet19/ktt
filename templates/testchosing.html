@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "HeadBlock.html" %}
+<body>
+{% include "NavBlock.html" %}
+
+    <form action="/testcreator" method="POST" >
+        <div class="container">
+            <p></p>
+        <div class="row">
+        <input type="text" class="form-control form-control-md col-md-6 mb-md-3" name="testname" placeholder="Название теста">
+        </div>
+        <div class="row">
+        <input type="text" class="form-control form-control-md col-md-6 mb-md-3" name="amount" placeholder="Количество вопросов">
+        </div>
+        <div class="row">
+        <button type="submit" class="btn btn-info btn-md mb-md-3">Создать</button>
+        </div>
+        </div>
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+{% import "bootstrap/wtf.html" as wtf %}
+<html lang="en">
+{% include "HeadBlock.html" %}
+<body>
+{% include "NavBlock.html" %}
+{% block content %}
+    <form method="POST" action="/addadmin">
+
+        <div class="glcontent">
+          <div class="form-group">
+            <label>Имя пользователя:</label>
+            <input type="text" class="form-control form-control-md" name="nickname">
+              <p></p>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Новый администратор</button>
+          </div>
+        </div>
+
+    </form>
+
+{% endblock %}
+</body>
+</html>

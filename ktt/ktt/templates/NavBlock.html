@@ -1,0 +1,41 @@
+<style>
+    .dropdown-menu-right{
+     right:0;
+    left:auto;
+}
+</style>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/"><img src="/static/logo.png" width="50" height="40">  KTT</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item ">
+        <a class="nav-link" href="testing">Тестирование</a>
+      </li>
+    </ul>
+
+  <form class="navbar-nav my-2 my-lg-0 ">
+ {% if current_user.is_authenticated %}
+     <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle " data-toggle="dropdown" href="#">{{ current_user.username  }}</a>
+    <div class="dropdown-menu dropdown-menu-right " >
+      <a class="dropdown-item" href="#">Аккаунт</a>
+         {%  if current_user.ugroup=='Admin' %}
+              <a class="dropdown-item" href="admin">Панель Администратора</a>
+               {% endif %}
+
+      <a class="dropdown-item" href="logout">Выйти</a>
+    </div>
+     </li>
+
+          {% else  %}
+          <form class="navbar-nav my-2 my-lg-0 ">
+             <a class="nav-link  my-2 my-sm-0  " href="login">Авторизация</a>
+             <a class="nav-link  my-2 my-sm-0 " href="register">Регистрация</a>
+        </form>
+       {% endif %}
+  </form>
+  </div>
+</nav>

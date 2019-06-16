@@ -1,0 +1,25 @@
+{% import "bootstrap/wtf.html" as wtf %}
+<html lang="en">
+{% include "HeadBlock.html" %}
+<body>
+{% include "NavBlock.html" %}
+
+
+    <form action="/file_upload" method="POST" enctype="multipart/form-data">
+        <div class="container">
+        <div class="row">
+        <input type="file" class="form-control form-control-md col-md-3 my-md-3" name="file">
+        </div>
+        <div class="row">
+        <input type="text" class="form-control form-control-md col-md-6 mb-md-3" name="filename" placeholder="Название файла">
+        </div>
+        <div class="row">
+        <input type="text" class="form-control form-control-md col-md-6 mb-md-3" name="description" placeholder="Описание">
+        </div>
+        <div class="row">
+        <button type="submit" class="btn btn-info btn-md mb-md-3">Загрузить</button>
+        </div>
+        </div>
+    </form>
+</body>
+</html>
