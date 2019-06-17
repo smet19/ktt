@@ -1,0 +1,39 @@
+{% import "bootstrap/wtf.html" as wtf %}
+<!DOCTYPE html>
+<html lang="en">
+{% include "HeadBlock.html" %}
+<body>
+{% include "NavBlock.html" %}
+
+    <table class="table table-hover">
+    <thead>
+    <tr>
+      <th scope="col">Название</th>
+      <th scope="col">Группа</th>
+      <th scope="col">Время</th>
+        {%  if current_user.ugroup=='Admin' or current_user.ugroup=='Superadmin'%}
+           <th scope="col">Управление</th>
+        {% endif %}
+    </tr>
+    </thead>
+        <form action="/testresult" method="post">
+    <tbody>
+
+    {% for files in fileslist %}
+
+    <tr class="table-active">
+      <td><a href="/testresult_files?filename={{ files[0] }}"> {{ files[1] }} </a></td>
+      <td>{{ files[2] }}</td>
+      <td>{{ files[3] }}</td>
+      <td>{{ files[4] }}</td>
+        {%  if current_user.ugroup=='Admin' or current_user.ugroup=='Superadmin'%}
+            <td><button type="submit" class="btn" name="delete" value="{{files[0] }}" formmethod="post"> Удалить</button> </td>
+        {% endif %}
+    </tr>
+
+      {% endfor %}
+      </tbody>
+        </form>
+</table>
+</body>
+</html>

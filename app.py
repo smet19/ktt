@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, session,app
+from flask import Flask, render_template, redirect, url_for, session,app,request
 import flask_sqlalchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, login_user, login_required, logout_user
@@ -8,7 +8,7 @@ from flask_bootstrap import Bootstrap
 import os
 from testing.engine import testing
 from testing.changing import test_changing
-from admin.module import administration,creategroup
+from admin.module import administration,creategroup,testresult,testresult_files
 from datetime import timedelta
 from admin.addadmin import addadmin
 from testing.addquestion import addquestion
@@ -37,6 +37,8 @@ app.register_blueprint(testing, url_prefix='/testing')
 app.register_blueprint(test_changing, url_prefix='/testchange')
 app.register_blueprint(testsavebp, url_prefix='/testsavebp')
 app.register_blueprint(addquestion, url_prefix='/testcreator')
+app.register_blueprint(testresult, url_prefix='/testresult')
+app.register_blueprint(testresult_files, url_prefix='/testresult_files')
 app.register_blueprint(file_upload, url_prefix='/file_upload')
 app.register_blueprint(file_download, url_prefix='/file_download')
 app.register_blueprint(files, url_prefix='/files')
@@ -81,6 +83,7 @@ def logout():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    print(request.form)
     form = RegisterForm()
     if form.validate_on_submit():
         hashed_password = generate_password_hash(form.password.data, method='sha256')
