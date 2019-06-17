@@ -32,3 +32,4 @@ def index():
                             return render_template('result.html', testRestult=que.get_result(session))
                     return render_template('testing.html', que=que, index=session['index'])
             return render_template('testerror.html')
+        return render_template('testerror.html')
