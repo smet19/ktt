@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, session,app,request
+from flask import Flask, render_template, redirect, url_for, session,app
 import flask_sqlalchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, login_user, login_required, logout_user
@@ -15,7 +15,7 @@ from testing.addquestion import addquestion
 from testing.testsavebp import testsavebp
 from files.file_present import file_download,files
 from files.file_upload import file_upload
-from user.module import profile
+from UserModels.module import profile
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -88,12 +88,16 @@ def register():
                              password=hashed_password,
                              firstname=form.firstname.data,
                              lastname=form.lastname.data,
-                             ugroup=form.ugroup.data
+                             ugroup=form.ugroup.data,
+                             uphone=form.uphone.data,
+                             umail=form.umail.data
                              )
         db.session.add(new_user)
         db.session.commit()
         return render_template('succesregister.html')
     return render_template('register.html', form=form)
+
+
 
 @profile.route('/<username>', methods=['GET', 'POST'])
 @login_required

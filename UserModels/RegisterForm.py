@@ -10,4 +10,6 @@ class RegisterForm(FlaskForm):
     password = PasswordField('Пароль', validators=[InputRequired(), Length(min=8, max=80)])
     firstname = StringField('Имя', validators=[InputRequired(), Length(min=2, max=80)])
     lastname = StringField('Фамилия', validators=[InputRequired(), Length(min=2, max=80)])
-    ugroup = SelectField('Группа', choices= exportgroup4Choice())
+    ugroup = SelectField('Группа', choices=exportgroup4Choice())
+    uphone = StringField('Телефон', validators=[Length(min=2, max=12)])
+    umail = StringField('E-Mail', validators=[Length(min=2, max=254)])

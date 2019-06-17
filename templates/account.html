@@ -10,7 +10,13 @@
              <h4 class="alert-heading">Аккаунт: </h4>
   <p class="mb-0"> Пользователь: {{user.username }} </p>
   <p class="mb-0"> ФИО: {{ user.firstname +' ' + user.lastname }} </p>
-  <p class="mb-1">Группа: {{ user.ugroup }}</p>
+    {%  if user.ugroup=='Admin' or user.ugroup=='Superadmin'%}
+        <p class="mb-1"> Группа: Преподаватель</p>
+    {% else %}
+        <p class="mb-1"> Группа: {{ user.ugroup }}</p>
+    {% endif %}
+  <p class="mb-0"> Телефон: {{ user.uphone }} </p>
+  <p class="mb-0"> Почта: {{ user.umail }} </p>
         </div>
 
 

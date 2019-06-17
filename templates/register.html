@@ -14,10 +14,12 @@
         <h2 class="form-signin-heading">Регистрация</h2>
         {{ form.hidden_tag() }}
           {{ wtf.form_field(form.username) }}
-        {{ wtf.form_field(form.password) }}
-        {{ wtf.form_field(form.firstname) }}
-        {{ wtf.form_field(form.lastname) }}
-        {{ wtf.form_field(form.ugroup) }}
+          {{ wtf.form_field(form.password) }}
+          {{ wtf.form_field(form.firstname) }}
+          {{ wtf.form_field(form.lastname) }}
+          {{ wtf.form_field(form.ugroup) }}
+          {{ wtf.form_field(form.uphone) }}
+          {{ wtf.form_field(form.umail) }}
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Зарегистрироваться</button>
       </form>
