@@ -23,6 +23,19 @@ def deletefilewithID(filename):
     cur.execute("DELETE FROM  filesdatabase WHERE filename =?; ", [filename])
     conn.commit()
 
+def deletetestwithID(testid):
+    conn = sqlite3.connect('testing.sqlite')
+    cur = conn.cursor()
+    cur.execute("DELETE FROM  testresult WHERE testid =?; ", [testid])
+    conn.commit()
+
+def create_testsresult():
+    conn = sqlite3.connect('testing.sqlite')
+
+    cur = conn.cursor()
+    cur.execute("CREATE TABLE testresult(testid TEXT UNIQUE,testname TEXT,sgroup TEXT,testtime TEXT)")
+    conn.commit()
+
 def create_testlist():
     conn = sqlite3.connect('testing.sqlite')
 
@@ -42,6 +55,13 @@ def creategrouplist():
     cur = conn.cursor()
     cur.execute("CREATE TABLE grouplist(id INT,groupname TEXT)")
     conn.commit()
+
+def insert_testresult(id,testname,groupname,time):
+    conn = sqlite3.connect('testing.sqlite')
+    cur = conn.cursor()
+    cur.execute("INSERT OR REPLACE INTO testresult (testid,testname,sgroup,testtime) VALUES (?,?,?,?); ", [id,testname,groupname,time])
+    conn.commit()
+
 
 def creategroupdb(id,groupname):
     conn = sqlite3.connect('testing.sqlite')
@@ -97,6 +117,15 @@ def checktest():
     conn.close()
     return result
 
+def checktestresult():
+    conn = sqlite3.connect('testing.sqlite')
+    cur = conn.cursor()
+    csql = 'SELECT * FROM testresult'
+    cur.execute(csql)
+    result = cur.fetchall()
+    conn.close()
+    return result
+
 def checktestlist():
     conn = sqlite3.connect('testing.sqlite')
     cur = conn.cursor()
@@ -113,3 +142,4 @@ def exportgroup4Choice():
         etuple = (element[1],element[1])
         listexp.append(etuple)
     return listexp
+

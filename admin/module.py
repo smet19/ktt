@@ -1,12 +1,13 @@
-from flask import Blueprint, request, render_template
+from flask import Blueprint, request, render_template, send_file
 from flask_login import login_required, current_user
-from File_DB import checkgroup, creategroupdb, checktestlist, addtacttable,checktact,checkfulltact
+from File_DB import checkgroup, creategroupdb, checktestlist, addtacttable, checktact, checkfulltact, checktestresult,deletefilewithID,deletetestwithID
 import time
 import ast
 
 administration = Blueprint('administartion', __name__, template_folder="templates")
 creategroup = Blueprint('creategroup', __name__, template_folder="templates")
-
+testresult = Blueprint('testresult', __name__, template_folder="templates")
+testresult_files = Blueprint('testresult_files', __name__, template_folder="templates")
 
 @administration.route('/', methods=['GET', 'POST'])
 @login_required
@@ -39,3 +40,19 @@ def index():
         return render_template('addgroup.html')
     else:
         return 'ОП, ВЫ НАШЛИ ПАСХАЛКУ ヾ(= ω´ =)'
+
+
+@testresult_files.route('/', methods=['GET','POST'])
+@login_required
+def index():
+            file_loc =str(request.args.get('filename')+'.txt')
+            print(file_loc)
+            return send_file(str(request.args.get('filename')))
+
+@testresult.route('/', methods=['GET','POST'])
+@login_required
+def index():
+    if request.method == 'POST' and request.form['delete'] !='':
+        deletetestwithID(request.form['delete'])
+        return render_template('results.html', fileslist=checktestresult())
+    return render_template('results.html', fileslist = checktestresult())
